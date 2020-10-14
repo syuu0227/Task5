@@ -24,19 +24,22 @@ class ViewController: UIViewController {
     
     @IBAction func calculationButtonTapped(_ sender: Any) {
         
-        if dividendTextField.text == "" {
+        guard let dividend = Double(dividendTextField.text ?? "") else {
             displayAlert(title: "課題5", message: "割られる数を入力して下さい")
             return
-        } else if divisorTextField.text == "" {
+        }
+        
+        guard let divisor = Double(divisorTextField.text ?? "") else {
             displayAlert(title: "課題5", message: "割る数を入力して下さい")
             return
-        } else if Double(divisorTextField.text!)! == 0 {
+        }
+        
+        guard divisor != 0 else {
             displayAlert(title: "課題5", message: "割る数には0を入力しないで下さい")
             return
         }
         
-        let answer = Double(dividendTextField.text!)! / Double(divisorTextField.text!)!
-        answerLabel.text = String(answer)
+        answerLabel.text = String(dividend/divisor)
         
     }
     
